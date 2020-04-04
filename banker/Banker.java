@@ -1,5 +1,4 @@
 package banker;
-
 import java.util.Scanner;
 
 public class Banker {
@@ -37,7 +36,7 @@ public class Banker {
         //matrice risorse massime
         for(int i=0; i<n; i++){
             for(int j=0; j<m; j++){
-                System.out.println("Inserisci le istanze max della risorsa " + (j+1) + " del processo " + (i+1) + ": ");
+                System.out.println("Inserisci le istanze massime della risorsa " + (j+1) + " del processo " + (i+1) + ": ");
                 risorseMassime[i][j] = scanner.nextInt();
             }
         }
@@ -48,14 +47,14 @@ public class Banker {
                 risorseResidue[i][j] = risorseMassime[i][j] - risorseAllocate[i][j];
             }
         }
-        
+
         if(controllaStato(risorseDisponibili, risorseAllocate, risorseResidue, n, m)){
             System.out.println("Il sistema è in stato sicuro");
             System.out.println("Scegli un processo per cui fare richiesta: ");
             int np = scanner.nextInt();
             for(int j=0; j<m; j++){
                 System.out.println("Inserisci il numero di istanze della risorsa " + (j+1) + ": ");
-                richiesta[j-1] = scanner.nextInt();
+                richiesta[j] = scanner.nextInt();
             }
             if(controllaRichiesta(richiesta, risorseDisponibili, risorseResidue, m, np-1)){
                 
@@ -73,7 +72,7 @@ public class Banker {
                         System.out.println("");
                     }
                 } else {
-                    System.out.println("La richiesta effettuata porta a unsafe state");
+                    System.out.println("La richiesta effettuata porta a uno stato non sicuro");
                 }
             } else {
                 System.out.println("Non è possibile effettuare quella richiesta al momento");
@@ -81,7 +80,7 @@ public class Banker {
                
             
         } else {
-            System.out.println("Stato corrente: unsafe state");
+            System.out.println("Il sistema non è in stato sicuro");
         }
         scanner.close();
     }
