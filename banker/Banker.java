@@ -92,12 +92,10 @@ public class Banker {
         int work[] = new int[m];
         boolean finish[] = new boolean[n];
         
-        //Work=Avaiable
         for(int i=0; i<m; i++){
             work[i]=disponibile[i];
         }   
 
-        //finish[i]=false per tutte le i
         for(int i=0; i<n; i++){
             finish[i] = false;
         }
