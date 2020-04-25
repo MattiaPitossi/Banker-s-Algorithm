@@ -38,10 +38,15 @@ public class Banker {
             for(int j=0; j<m; j++){
                 System.out.println("Inserisci le istanze massime della risorsa " + (j+1) + " del processo " + (i+1) + ": ");
                 risorseMassime[i][j] = scanner.nextInt();
+                while(risorseMassime[i][j]<risorseAllocate[i][j]){
+                    System.out.println("attenzione: la richiesta massima deve essere maggiore o uguale a " + risorseAllocate[i][j]);
+                    System.out.println("Inserisci le istanze massime della risorsa " + (j+1) + " del processo " + (i+1) + ": ");
+                    risorseMassime[i][j] = scanner.nextInt();
+                }
             }
         }
 
-        //matrice risorse residue
+        //calcolo matrice risorse residue
         for(int i=0; i<n; i++){
             for(int j=0; j<m; j++){
                 risorseResidue[i][j] = risorseMassime[i][j] - risorseAllocate[i][j];
@@ -85,7 +90,7 @@ public class Banker {
         scanner.close();
     }
 
-    //controlla se la matrice è in stato sicuro
+    //controlla se la matrice si trova in stato sicuro
     public static boolean controllaStato(int disponibile[], int risorseAllocate[][], int risorseRichieste[][], int np, int nr){
         int n = np;
         int m = nr;
